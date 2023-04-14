@@ -32,5 +32,13 @@ spec:
             }
         }
       }
+    stage('Apply Kubernetes files') {
+            checkout scm
+            container('kubectl') {
+                withKubeConfig([namespace: "ibrahim"]) {
+                    sh 'kubectl apply -f deployment.yaml -n ibrahim'
+                }
+            }
+        }
     }
   }   
