@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: ibrahim
+  name: deployment #The name of the Kubernetes Deployment to be created in the Kubernetes cluster
+  labels:
+    app: examen
+spec:
+  replicas: 2 #The number of pods to be created in the Kubernetes cluster for the application container
+  selector:
+    matchLabels:
+      app: examen
+  template:
+    metadata:
+      labels:
+        app: examen
+    spec:
+      containers:
+      - name: examen #The name of the react.js application container
+        image: ibrahim999/examen:latest #The Docker image for building the application container
+        ports:
+        - containerPort: 8000 #The port for the application container
